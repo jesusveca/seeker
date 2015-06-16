@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<div class="form-group">
+  <label for="comment">Búsqueda :</label>
+  <textarea class="form-control" rows="1" columns="10" id="comment"></textarea>
+  <button type="button" class="btn btn-success">Success</button>
+</div>
+
+{% if list %}
+    <ul>
+    {% for a in list %}
+        <li>asd</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No list is available.</p>
+{% endif %}
+

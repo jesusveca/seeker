@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+{% extends "bootstrap/base.html" %}
+{% block title %}Buscador de Noticias{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+  <!-- ... -->
+</div>
+{% endblock %}
+
+{% block content %}
+  <h1>Hello, Bootstrap</h1>
+{% endblock %}
+
+
+{% block body %}
+<form role="form">
+  <div class="form-horizontal">
+    <label for="email">Búsqueda:</label>
+    <input type="email" class="form-control" id="email">
+  </div>
+  <button type="submit" class="btn btn-success">Search</button>
+</form>
+{% endblock %}
