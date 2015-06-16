@@ -15,11 +15,19 @@
 
 
 {% block body %}
-<form role="form">
-  <div class="form-horizontal">
-    <label for="email">Búsqueda:</label>
-    <input type="email" class="form-control" id="email">
-  </div>
-  <button type="submit" class="btn btn-success">Search</button>
-</form>
+
+
+ <div class="container">
+	 <h4>News Research: </h4>
+     <div class="input-group">
+     	<input type="text" class="form-control">
+        <span class="input-group-btn">
+        
+        	<button class="btn btn-default" type="button">
+        	<span class="glyphicon glyphicon-search"></span>
+        	</button>
+
+        </span>
+     </div>
+ </div>
 {% endblock %}
