@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% block body %}
+{{ super() }}
+
+{% block content %}
+<div class="row" style="height: 50px"><div class="col-md-4">
+<h5>Búsqueda de : {{' '.join(keywords)}}</h5>
+</div></div>
+<div class="row"><div class="col-md-12">
+<div class ="container-fluid">
+<div class="list-group" >
+	{% if keywords %}
+		{% for keyword in keywords %}
+    	
+    	<a href="#" class="list-group-item">
+    	<h4 class="list-group-item-heading">Titulo de la noticia</h4>
+    	<p class="list-group-item-text">Breve contenido de cada noticia</p>
+     	</a>
+		{% endfor %}  
+   	{% else %}
+   		<h1>no keywords</h1>
+   	{% endif %}
+</div>
+</div>
+</div>
+</div>
+   	
+{% endblock %}
+{% endblock %}
+
+
+

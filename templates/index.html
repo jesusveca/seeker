@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 
-<div class="form-group">
-  <label for="comment">Búsqueda :</label>
-  <textarea class="form-control" rows="1" columns="10" id="comment"></textarea>
-  <button type="button" class="btn btn-success">Success</button>
+{% extends "bootstrap/base.html" %}
+
+
+{% block title %}
+Buscador de Noticias
+{% endblock %}
+
+
+
+{% block body %}
+<div class="row"><div class="col-md-12">
+
+ <div class="container">
+     <h4>News Research: </h4>
+        <form action="{{ url_for('search') }}" method = 'POST'>
+        
+        <div class="input-group">
+        
+        <input type="text" class="form-control" name="keywords">
+        <span class="input-group-btn">
+        
+        <button class="btn btn-default" type="submit">
+        <span class="glyphicon glyphicon-search"></span>
+        </button>
+
+        </span>
+
+        </div>
+        </form>
+
+  <!-- ... -->
+</div>
+</div>
 </div>
 
-{% if list %}
-    <ul>
-    {% for a in list %}
-        <li>asd</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No list is available.</p>
-{% endif %}
-
+{% endblock %}
