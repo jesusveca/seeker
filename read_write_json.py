@@ -16,7 +16,7 @@ class JsonManagePsql:
             json_data = json.load(json_file)
             return json_data
     def select_data(self,id_new):
-        cursor.execute("SELECT fecha,titulo,url from noticias")
+        cursor.execute("SELECT fecha,titulo,url from noticias WHERE id_noticia=(%s)" % (str(id_new)) )
         rows = cursor.fetchall()
         return rows
 
