@@ -10,22 +10,24 @@
 </div>
 
 <div class="col-md-4">
-<h5 align="left">Búsqueda de : {{' '.join(keywords)}}</h5>
+<h5 align="left">Búsqueda de : {{ keywords }}</h5>
 </div></div>
 
 <div class="row"><div class="col-md-12	">
 <div class ="container-fluid">
 <div class="list-group" >
-	{% if keywords %}
-		{% for keyword in keywords %}
-    	
-    	<a href="#" class="list-group-item">
-    	<h4 class="list-group-item-heading">Titulo de la noticia</h4>
-    	<p class="list-group-item-text">Breve contenido de cada noticia</p>
-     	</a>
-		{% endfor %}  
+	{% if result %}
+		{% for new in result %}
+				<a href="#" class="list-group-item">
+			
+		    	<h3 class="list-group-item-heading">{{ new[0] }}</h4>
+		    	<h6 class="list-group-item-heading">{{ new[1] }}</h4>
+		    	   	
+     	
+     	{% endfor %}  
+	    </a>
    	{% else %}
-   		<h1>no keywords</h1>
+   		<h5>Sorry, no more results :(</h5>
    	{% endif %}
 </div>
 </div>
@@ -41,11 +43,9 @@
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    {% if keywords %}
-    {% set count = 1 %}
-    {% for keyword in keywords %}
-    	<li><a href="/search/{{count}}">{{count}}</a></li>
-  		{% set count = count + 1 %}
+    {% if len_result %}
+    {% for x in range(1,len_result) %}
+    	<li><a href="/search/{{x}}">{{x}}</a></li>
     {% endfor %}  
     {% endif %}
     <li>
