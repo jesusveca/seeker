@@ -111,7 +111,7 @@ class PreProcessManager(object):
             #print(type(similar))
             if similar[1] != 0:
                 list_sims.append(similar)
-        print(list_sims)
+        #print(list_sims)
         list_sims = sorted(list_sims, key = lambda list_sims: list_sims[1],reverse = True)
         
         for i_sim in list_sims:
@@ -123,9 +123,3 @@ class PreProcessManager(object):
     def __iter__(self):
         for line in open('corpus.txt'):
             yield dictionary.doc2bow(line.lower().split())
-
-
-
-proc_mnger = PreProcessManager()
-proc_mnger.read_all_data_from_files()
-proc_mnger.process_query("christian")

@@ -15,6 +15,11 @@ class JsonManagePsql:
         with open(file_name) as json_file:
             json_data = json.load(json_file)
             return json_data
+    def select_data(self,id_new):
+        cursor.execute("SELECT fecha,titulo,url from noticias")
+        rows = cursor.fetchall()
+        return rows
+for row in rows:
     def insert_data(self,categoria,titulo,fecha,url): 
         cursor = self.conn.cursor()
         query =  "INSERT INTO Noticias (categoria, titulo, fecha, url) VALUES (%s, %s, %s, %s);"
