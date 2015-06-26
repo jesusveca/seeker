@@ -1,5 +1,4 @@
 {% extends "index.html" %}
-
 {% block body %}
 {{ super() }}
 
@@ -13,23 +12,21 @@
 <h5 align="left">Búsqueda de : {{ keywords }}</h5>
 </div></div>
 
-<div class="row"><div class="col-md-12	">
 <div class ="container-fluid">
 <div class="list-group" >
-	{% if result %}
-		{% for new in result %}
-				<a href="#" class="list-group-item">
-			
-		    	<h3 class="list-group-item-heading">{{ new[0] }}</h4>
-		    	<h6 class="list-group-item-heading">{{ new[1] }}</h4>
-		    	   	
-     	
-     	{% endfor %}  
-	    </a>
-   	{% else %}
-   		<h5>Sorry, no more results :(</h5>
-   	{% endif %}
-</div>
+  {% if result %}
+    {% for new in result %}
+        <a href="#" class="list-group-item">
+        <div class="row">
+        <div class"col-md-1">
+            <h4> {{new[0]}}</h4>
+        </div>
+        </div>
+        </a>
+      {% endfor %}  
+    {% else %}
+      <h5>Sorry, no more results :(</h5>
+    {% endif %}
 </div>
 </div>
 </div>
