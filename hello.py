@@ -3,16 +3,16 @@ from flask import Flask
 from flask import render_template
 from flask_bootstrap import Bootstrap
 from flask import request, flash
-from flask.ext.sqlalchemy import SQLAlchemy
+
  
 
 app = Flask(__name__) 
  
 app.secret_key = 'development key'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/new'
+result_global = []
 
-db = SQLAlchemy(app)
+
 
 @app.route("/")
 def hello():
@@ -22,20 +22,27 @@ def hello():
 def controller():
    return render_template('index.html',list = ['julio','juan'])
 
-@app.route('/search', methods = ['POST'])
+def ejemplo(lista):
+	return lista.split()
+
+
+
+
+@app.route("/search", methods = ['POST'])
 def search():
-
 #con las Keywords obtendremos una estructura que contiene los resultados de busqueda
+   global result_global
+   result_global = request.form['keywords']
+   return render_template('search.html',keywords = result_global.split(),method = 'POST')
 
-   keywords = request.form['keywords']
+#@app.route("/search")
+@app.route("/search/<page_id>")
+def pagine(page_id):
 
-   
-   result = []
-
-   result = keywords
+   return render_template('search.html', keywords = ejemplo(result_global))
 
 
-   return render_template('search.html',keywords = keywords.split()	,method = 'POST')
+
 
 
 Bootstrap(app)

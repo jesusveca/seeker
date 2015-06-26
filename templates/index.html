@@ -10,10 +10,13 @@ Buscador de Noticias
 
 
 {% block body %}
+
 <div class="row"><div class="col-md-12">
 
  <div class="container">
+     <a href="/">
      <h4>News Research: </h4>
+     </a>   
         <form action="{{ url_for('search') }}" method = 'POST'>
         
         <div class="input-group">
