@@ -3,18 +3,19 @@ import json
 
 class JsonManagePsql:
     def __init__(self):
-        #self.initialize_psql()
+        self.initialize_psql()
         pass  
     def initialize_psql(self):
-        #try:
-            #self.conn = psycopg2.connect(database="NewsSearcher", user="postgres", password="", host="127.0.0.1", port="5432")
-        #except:
-            #print("I am unable to connect to the database")
+        try:
+            self.conn = psycopg2.connect(database="NewsSearcher", user="postgres", password="", host="127.0.0.1", port="5432")
+        except:
+            print("I am unable to connect to the database")
         pass
     def read_json_file(self, file_name):
         with open(file_name) as json_file:
             json_data = json.load(json_file)
             return json_data
+        
     def select_data(self,id_new):
         cursor.execute("SELECT fecha,titulo,url from noticias WHERE id_noticia=(%s)" % (str(id_new)) )
         rows = cursor.fetchall()
