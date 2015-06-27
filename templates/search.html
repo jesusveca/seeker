@@ -9,7 +9,17 @@
 </div>
 
 <div class="col-md-4">
-<h5 align="left">Búsqueda de : {{ keywords }}</h5>
+<h5 align="left">Búsqueda de : {{ keywords }}
+{% if from_date %}
+desde 
+{{ from_date }}
+{% endif %}
+{% if to_date %}
+hasta  
+{{ to_date }}
+{% endif %}
+
+</h5>
 </div></div>
 
 <div class ="container-fluid">

@@ -11,31 +11,40 @@ Buscador de Noticias
 
 {% block body %}
 
-<div class="row"><div class="col-md-12">
 
- <div class="container">
-     <a href="/">
-     <h4>News Research: </h4>
-     </a>   
-        <form action="{{ url_for('search') }}" method = 'POST'>
+    <div class="container">
+    <a href="/"> <h4>News Research: </h4> </a>   
+    <form action="{{ url_for('search') }}" method = 'POST'>
+    
+        <div class="row">
+            
+            <div class="col-md-8">
+            <div class="input-group">
+         
+            <input type="text" class="form-control" name="keywords">
+            <span class="input-group-btn">                   
+            <button class="btn btn-default" type="submit">
+            <span class="glyphicon glyphicon-search"></span>
+            </button>
         
-        <div class="input-group">
-        
-        <input type="text" class="form-control" name="keywords">
-        <span class="input-group-btn">
-        
-        <button class="btn btn-default" type="submit">
-        <span class="glyphicon glyphicon-search"></span>
-        </button>
+            </div>
+            </div>
+            
+            <div class="col-md-2">
+            
+            <input type="date" class="form-control" name="from_date">
+            <span class="input-group-btn"></span>
 
-        </span>
+            </div>
+            
+            <div class="col-md-2">
 
+            <input type="date" class="form-control" name="to_date">
+            <span class="input-group-btn"></span>
+
+            </div>
         </div>
-        </form>
-
-  <!-- ... -->
-</div>
-</div>
-</div>
+    </form>
+    </div>
 
 {% endblock %}
