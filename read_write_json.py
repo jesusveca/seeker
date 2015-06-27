@@ -17,6 +17,7 @@ class JsonManagePsql:
             return json_data
         
     def select_data(self,id_new):
+        cursor = self.conn.cursor()
         cursor.execute("SELECT fecha,titulo,url from noticias WHERE id_noticia=(%s)" % (str(id_new)) )
         rows = cursor.fetchall()
         return rows

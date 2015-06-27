@@ -15,6 +15,7 @@ app.secret_key = 'development key'
 query_global = ""
 result_global = []
 result_total_len = 0
+result_final = []
 
 processlogic = pre_process.PreProcessManager()
 processlogic.read_all_data_from_files()
@@ -40,7 +41,8 @@ def search():
    global query_global
    global result_global
    global result_total_len
-
+   global result_final
+   result_final = []
    query_global = request.form['keywords']
 
    result_global = processlogic.process_query(query_global) #lista de tuplas
@@ -49,7 +51,12 @@ def search():
 
    result_temp = result_global[:20]
 
-   return render_template('search.html',keywords = query_global, result = result_temp , len_result = result_total_len,method = 'POST')
+   for x in result_temp:
+     temp = processlogic.json_obj.select_data(x[0])
+     result_final.append(temp[0])
+ 
+   print (result_final)
+   return render_template('search.html',keywords = query_global, result = result_final , len_result = result_total_len,method = 'POST')
 
 #@app.route("/search")
 @app.route("/search/<int:page_id>")
@@ -57,8 +64,13 @@ def pagine(page_id):
 
    index = page_id*20
    result_temp = result_global[index-20:index]
+   result_final = []
 
-   return render_template('search.html', keywords = query_global, result = result_temp, len_result = result_total_len)	
+   for x in result_temp:
+     temp = processlogic.json_obj.select_data(x[0])
+     result_final.append(temp[0])
+
+   return render_template('search.html', keywords = query_global, result = result_final, len_result = result_total_len)	
 
 
 
