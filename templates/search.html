@@ -34,8 +34,14 @@ hasta
             <div class="col-md-4">
             <h5> {{new[1]}}</h5>
             </div>
+            
+            <div class="col-md-4">
+            <h5> {{similarities[loop.index]}}</h5>
+            </div>
+
         </div>
         </a>
+
       {% endfor %}  
     {% else %}
       <h5>Sorry, no more results :(</h5>
