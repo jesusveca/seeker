@@ -5,7 +5,9 @@ import nltk
 
 import glob
 import numpy as np
-
+import Stemmer
+from timeit import timeit
+import time
 from pprint import pprint
 import read_write_json
 from gensim import corpora, models, similarities
@@ -93,33 +95,47 @@ class PreProcessManager(object):
      
     def cleanDoc(self,doc):
         stopset = set(stopwords.words('spanish'))
-        stemmer = nltk.PorterStemmer()
+        stemmer = Stemmer.Stemmer('spanish')
         tokens = WordPunctTokenizer().tokenize(doc)
         clean = [token.lower() for token in tokens if token.lower() not in stopset and len(token) > 2]
-        final = [stemmer.stem(word) for word in clean]
+        final = stemmer.stemWords(clean)
         return final
     
     def process_query(self,query):
         self.my_query = query
         print(self.my_query)
-        self.new_vec = self.dictionary.doc2bow(self.cleanDoc(self.my_query))
-        print('end matrix')
+        self.clean_query = self.cleanDoc(self.my_query)
+        self.new_vec = self.dictionary.doc2bow(self.clean_query)
+        print(self.clean_query)
         sims = self.index[self.tfidf[self.new_vec]]
         #print(list(enumerate(sims)))
-        list_sims = []
+        self.list_sims = []
         for similar in enumerate(sims):
             #print(type(similar))
             if similar[1] != 0:
-                list_sims.append(similar)
+                self.list_sims.append(similar)
         #print(list_sims)
-        list_sims = sorted(list_sims, key = lambda list_sims: list_sims[1],reverse = True)
+        self.list_sims = sorted(self.list_sims, key = lambda list_sims: list_sims[1],reverse = True)
         
-        for i_sim in list_sims:
+        for i_sim in self.list_sims:
             print(i_sim)
+        print(len(self.list_sims))
         print('\n\n')
         print(self.new_vec)
-        return list_sims
+        return self.list_sims
     
     def __iter__(self):
         for line in open('corpus.txt'):
             yield dictionary.doc2bow(line.lower().split())
+            
+        
+# prd = PreProcessManager()
+# prd.read_all_data_from_files()
+# while True:
+#     sf_query = input("input query: ")
+#     start_time = time.time()
+#     sims_data = prd.process_query(sf_query)
+#     elapsed_time = time.time() - start_time
+#     print("Elapsed time: %.10f seconds." % elapsed_time)
+#     if sf_query == "exit":
+#         break
